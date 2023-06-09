@@ -1,0 +1,98 @@
+HTML:
+
+<!DOCTYPE html>
+<html>
+    <title>Drawing Basics</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <h1>Drawing Basics</h1>
+
+    <!-- Add a canvas element to the page-->
+    <canvas id="myCanvas"></canvas>
+
+    <!--Load image to page-->
+     <img src="html-logo.png">
+
+    <!-- Load JavaScript-->
+    <script src="main.js"></script>
+    </html>
+  </html>
+  
+  JAVASCRIPT
+  
+  let cnv = document.getElementById("myCanvas");
+let ctx = cnv.getContext("2d");
+cnv.width = 800;
+cnv.height = 600;
+
+// lets draw some stuff using the graphics context (ctx)
+
+// rectangle
+// set the outline and fill colors
+//use any vaild css colors: name, rgb(), rgba(), hex #FF0033
+
+ctx.strokeStyle = "purple";
+ctx.strokeRect(50, 20, 150, 50); // draw an outlined rectangle
+
+ctx.fillStyle = "rgb(0, 255, 0)";
+ctx.fillRect(225, 50, 50, 50); // draw a filled square
+
+// draw text
+ctx.font = "42px Comic Sans MS";
+ctx.fillStyle = "red";
+ctx.fillText("Hello Canvas!", 300, 50); // filled text
+
+ctx.font = "30px Arial";
+ctx.strokeStyle = "blue";
+ctx.strokeText("Hello Canvas!", 350, 100); // outlined text
+
+// draw lines
+ctx.lineWidth = 4;
+ctx.strokeStyle = "orange";
+ctx.beginPath();
+ctx.moveTo(500, 250);
+ctx.lineTo(700, 150);
+ctx.lineTo(600, 100);
+ctx.stroke(); // draw the specified path
+
+// draw polygon
+ctx.fillStyle = "cyan";
+ctx.beginPath();
+ctx.moveTo(500, 400);
+ctx.lineTo(700, 350);
+ctx.lineTo(600, 300);
+ctx.closePath(); // go back to start of path
+ctx.fill(); // draw the specified path
+
+// cricles / arcs
+ctx.lineWidth = 5;
+ctx.strokeStyle = "#0000FF";
+ctx.beginPath();
+ctx.arc(100, 500, 50, 0, 2 * Math.PI);
+ctx.stroke();
+
+ctx.fillStyle = "green";
+ctx.beginPath();
+ctx.arc(250, 500, 30, 0, 2 * Math.PI);
+ctx.fill();
+
+ctx.fillStyle = "#FFFF00";
+ctx.beginPath();
+ctx.arc(250, 500, 20, 0, 2 * Math.PI);
+ctx.fill();
+
+
+CSS: 
+
+body {
+  text-align: center;
+}
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+canvas {
+  border: 1px solid grey;
+}
