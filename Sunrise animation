@@ -1,0 +1,78 @@
+HTML
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sunrise</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Canvas for drawing -->
+    <canvas id="myCanvas"></canvas>
+    <img id="cloud" src="img/cloth-cloud.png" style="display: none" />
+
+    <script src="main.js"></script>
+  </body>
+</html>
+
+JS
+let cnv = document.getElementById("myCanvas");
+let ctx = cnv.getContext("2d");
+cnv.width = 500;
+cnv.height = 500;
+let y = 350;
+let x = 149;
+let w = 220;
+let r = 50;
+let g = 0;
+
+requestAnimationFrame(draw);
+
+function draw() {
+  if (y < 500) {
+    y--;
+  }
+  if (x > -900) {
+    x--;
+  }
+  if (w > 0) {
+    w++;
+  }
+  if (r < 190) {
+    r += 0.15;
+  }
+  if (g > -1) {
+    g++;
+  }
+
+  //SKY
+  ctx.fillStyle = "cornflowerblue";
+  ctx.fillRect(0, 0, 500, 500);
+  //SUN
+  ctx.fillStyle = `rgb(255, ${g}, 0)`;
+  ctx.beginPath();
+  ctx.arc(250, y, r, 0, 2 * Math.PI);
+  ctx.fill();
+
+  //frame
+  requestAnimationFrame(draw);
+
+  //GROUND
+  ctx.fillStyle = "seagreen";
+  ctx.fillRect(0, 350, 500, 150);
+
+  //CLOUDS
+  let cloudImg = document.getElementById("cloud");
+  ctx.drawImage(cloudImg, x, 100);
+  ctx.drawImage(cloudImg, w, 75);
+}
+
+CSS
+body {
+  text-align: center;
+  background-color: #ff82e0;
+}
+
+canvas {
+  border: 1px solid grey;
+}
